@@ -14,8 +14,6 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.utils import resample
 
-# Suppress warnings
-warnings.filterwarnings('ignore')
 
 # Load dataset
 file_path = 'haunting_dataset.csv'
