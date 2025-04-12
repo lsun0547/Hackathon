@@ -21,8 +21,7 @@ def predict():
            int(request.form['weather']),
            int(request.form['moon']),
            int(request.form['temperature']),
-           int(request.form['day']),
-           int(request.form['wind'])
+           int(request.form['day'])
        ]
 
 
