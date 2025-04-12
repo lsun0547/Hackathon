@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Ghost Prediction</title>
+</head>
+<body>
+   <h1>Haunting Prediction Form</h1>
+   <form action="/predict" method="post">
+       <label for="time">Hour (0–23):</label>
+       <input type="number" name="time" min="0" max="23" required><br><br>
+
+
+       <label for="location">Location:</label>
+       <select name="location" required>
+           <option value="0">North Gate</option>
+           <option value="1">Old Oak Tree</option>
+           <option value="2">Mausoleum</option>
+           <option value="3">Grave 42</option>
+           <option value="4">Chapel</option>
+           <option value="5">Back Fence</option>
+       </select><br><br>
+
+
+       <label for="weather">Weather:</label>
+       <select name="weather" required>
+           <option value="0">Clear</option>
+           <option value="1">Foggy</option>
+           <option value="2">Rainy</option>
+           <option value="3">Stormy</option>
+           <option value="4">Windy</option>
+       </select><br><br>
+
+
+       <label for="moon">Moon Phase:</label>
+       <select name="moon" required>
+           <option value="0">New Moon</option>
+           <option value="1">Young Moon</option>
+           <option value="2">Waxing Crescent</option>
+           <option value="3">Waxing Quarter</option>
+           <option value="4">Waxing Gibbous</option>
+           <option value="5">Full Moon</option>
+           <option value="6">Waning Gibbous</option>
+           <option value="7">Waning Quarter</option>
+           <option value="8">Waning Crescent</option>
+           <option value="9">Old Moon</option>
+       </select><br><br>
+
+
+       <label for="temperature">Temperature:</label>
+       <select name="temperature" required>
+           <option value="0">Very Cold</option>
+           <option value="1">Cold</option>
+           <option value="2">Mild</option>
+           <option value="3">Warm</option>
+           <option value="4">Hot</option>
+       </select><br><br>
+
+
+       <label for="day">Day of the Week:</label>
+       <select name="day" required>
+           <option value="0">Monday</option>
+           <option value="1">Tuesday</option>
+           <option value="2">Wednesday</option>
+           <option value="3">Thursday</option>
+           <option value="4">Friday</option>
+           <option value="5">Saturday</option>
+           <option value="6">Sunday</option>
+       </select><br><br>
+
+
+       <label for="wind">Wind Strength:</label>
+       <select name="wind" required>
+           <option value="0">None</option>
+           <option value="1">Light Wind</option>
+           <option value="2">Steady Wind</option>
+           <option value="3">Strong Wind</option>
+           <option value="4">Howling Wind</option>
+       </select><br><br>
+
+
+       <input type="submit" value="Predict">
+   </form>
+</body>
+</html>
