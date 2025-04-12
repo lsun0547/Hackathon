@@ -30,7 +30,7 @@ def predict():
        result = "Haunted" if prediction == 1 else "Not Haunted" # based on parameters from user, use ml model to predict if graveyard will be haunted or not
 
 
-       return f"<h2>Prediction: {result}</h2><a href='/'>Back</a>" # display prediction result
+       return render_template('prediction.html', result=result) # display prediction result
 
 
    except Exception as e:
