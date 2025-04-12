@@ -52,7 +52,7 @@ def generate_entry():
 
 
 # Generate dataset
-dataset = [generate_entry() for _ in range(500000)]
+dataset = [generate_entry() for _ in range(1000000)]
 df = pd.DataFrame(dataset)
 
 print(df.head())

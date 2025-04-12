@@ -1,5 +1,7 @@
 # Hackathon
-
+- The theme of the hackathon was to devise a creative solution to solve a peaceful graveyard's unpredictable and mysterious hauntings. We created a fake dataset of hauntings in the graveyard. Then, we implemented both a logistic regression mode and a random forest model to predict whether a person would get haunted or not, given the variables.
+- After this, we imported this model into our HTML + CSS front end, allowing users to provide the conditions they are in. This will predict whether they will be haunted or not.
+- There are a few potential uses for this. It was mentioned that the cause of the haunting was unknown. With more knowledge regarding the circumstances behind the hauntings, we believe it could be solved more easily. Additionally, it could be used to allow the villagers to avoid ghosts on days the graveyard is more likely to be haunted.
 ---
 
 # GhostDataSetTest.py
