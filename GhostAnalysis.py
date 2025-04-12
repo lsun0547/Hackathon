@@ -24,7 +24,7 @@ file_path = 'haunting_dataset.csv'
 df = pd.read_csv(file_path)
 
 #Dropping wind since we found that it did not help much with predictions
-df = df.drop(['wind'], axis = 1)
+#df = df.drop(['wind'], axis = 1)
 
 print(df.head())
 
