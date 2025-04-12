@@ -31,7 +31,7 @@ def generate_entry():
     if (weather in ['Foggy', 'Stormy'] or int(time.split(':')[0]) in range(0, 5)
             or location in ['Mausoleum', 'Chapel']
             or temp in ['Very Cold', 'Cold']):
-        haunted = random.choices([1, 0], weights=[0.8, 0.2])[0]
+        haunted = random.choices([1, 0], weights=[0.85, 0.15])[0]
     elif (moon in ['Full Moon'] and int(time.split(':')[0]) in range(20, 5) or (
             location in ['Grave 42'] and day in ['Friday']) or (
                   temp in ['Very Cold'] and weather in ['Foggy', 'Stormy'])):
