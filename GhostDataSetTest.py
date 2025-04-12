@@ -13,7 +13,7 @@ moon_options = ['New Moon', 'Young Moon', 'Waxing Crescent', 'Waxing Quarter', '
 temp_options = ['Very Cold', 'Cold', 'Mild', 'Warm', 'Hot']
 time_options = [f"{hour}:00" for hour in range(0, 24)]
 day_options = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-wind_options = ['None', 'Light Wind', 'Steady Wind', 'Strong Wind', 'Howling Wind']
+#wind_options = ['None', 'Light Wind', 'Steady Wind', 'Strong Wind', 'Howling Wind']
 
 
 def generate_entry():
@@ -23,7 +23,7 @@ def generate_entry():
     moon = random.choice(moon_options)
     temp = random.choice(temp_options)
     day = random.choice(day_options)
-    wind = random.choice(wind_options)
+    #wind = random.choice(wind_options)
 
     # Haunting logic based on likely to be haunted areas, based on weather,time, moon phase, etc
     # Some variables above are not in the if statement, as they will have no effect on the haunting.
@@ -45,7 +45,7 @@ def generate_entry():
         'weather': weather,
         'temperature': temp,
         'day': day,
-        'wind': wind,
+        #'wind': wind,
         'moon': moon,
         'haunted': haunted
     }
