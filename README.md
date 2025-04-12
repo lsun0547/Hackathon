@@ -1,5 +1,7 @@
 # Hackathon
 
+---
+
 # GhostDataSetTest.py
 
 ## Import Statements
@@ -44,7 +46,7 @@
 - Hot
 
 ### Time Options:
-- Hour 0 to hour 24
+- Hour 0 to hour 23
 
 ### Day Options:
 - Monday
@@ -81,3 +83,35 @@
 
 3. **Haunting Chance: 20%**
    - For all other conditions
+
+4. **Return**
+   - Return the various variables we have
+
+## Dataset
+
+- Generate the dataset using pandas
+  - Generate 5000 entries
+  - Create the dataframe and name it df
+
+- Make the df a .csv file which can be saved into PyCharm
+
+---
+
+# GhostAnalysis.py
+## Import Statements
+
+- **Seaborn** for machine learning
+- **Pandas** and **Matplotlib** for data analysis
+- Various **Sci-kit Learn** libraries will also be utilized
+
+## Dataframes
+- Assign each variable a different index in the dataframe
+- Create the haunted and not haunted options (1 and 0, respectively)
+- Balance the dataset with sampled and unsampled parts
+- Split the data
+  - Create a test and train dataset
+  - 80% will be dedicated for train, 20% for test
+- Prediction
+  - **Random Forest Generator** was our model of choice
+  - Calculate our accuracy
+  - Print out our prediction and the ground truth
