@@ -27,7 +27,7 @@ df['location'] = df['location'].map({
     'Grave 42': 3, 'Chapel': 4, 'Back Fence': 5})
 
 df['weather'] = df['weather'].map({
-    'Clear': 0, 'Foggy': 1, 'Rainy': 2, 'Stormy': 3, 'Windy': 4})
+    'Clear': 0, 'Foggy': 1, 'Rainy': 2, 'Stormy': 3})
 
 df['moon'] = df['moon'].map({
     'New Moon': 0, 'Young Moon': 1, 'Waxing Crescent': 2, 'Waxing Quarter': 3,

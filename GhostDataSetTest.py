@@ -7,7 +7,7 @@ fake = Faker()
 
 # Sample data pools
 location_options = ['North Gate', 'Old Oak Tree', 'Mausoleum', 'Grave 42', 'Chapel', 'Back Fence']
-weather_options = ['Clear', 'Foggy', 'Rainy', 'Stormy', 'Windy']
+weather_options = ['Clear', 'Foggy', 'Rainy', 'Stormy']
 moon_options = ['New Moon', 'Young Moon', 'Waxing Crescent', 'Waxing Quarter', 'Waxing Gibbous', 'Full Moon',
                 'Waning Gibbous', 'Waning Quarter', 'Waning Crescent', 'Old Moon']
 temp_options = ['Very Cold', 'Cold', 'Mild', 'Warm', 'Hot']
