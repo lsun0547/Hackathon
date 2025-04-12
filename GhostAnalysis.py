@@ -10,14 +10,23 @@ warnings.filterwarnings('ignore')
 
 # Scikit-learn imports
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.utils import resample
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, f1_score
+from sklearn.tree import DecisionTreeClassifier
+
 
 
 # Load dataset
 file_path = 'haunting_dataset.csv'
 df = pd.read_csv(file_path)
+
+#Dropping wind since we found that it did not help much with predictions
+df = df.drop(['wind'], axis = 1)
+
+print(df.head())
 
 # Encode categorical features
 df['time'] = df['time'].apply(lambda x: int(x.split(':')[0]))
@@ -41,9 +50,6 @@ df['day'] = df['day'].map({
     'Monday': 0, 'Tuesday': 1, 'Wednesday': 2, 'Thursday': 3,
     'Friday': 4, 'Saturday': 5, 'Sunday': 6})
 
-df['wind'] = df['wind'].map({
-    'None': 0, 'Light Wind': 1, 'Steady Wind': 2,
-    'Strong Wind': 3, 'Howling Wind': 4})
 
 # Balance the dataset
 df_majority = df[df.haunted == 0]
@@ -61,6 +67,39 @@ X = df_balanced.drop('haunted', axis=1)
 y = df_balanced['haunted']
 
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# New LRM
+
+# Logistic Regression
+
+#Creates model type
+lr_model = LogisticRegression(random_state=42)
+#Puts our TRAINING DATA in the model
+lr_model.fit(x_train, y_train)
+#Predicts using testing data?
+y_pred_lr = lr_model.predict(x_test)
+
+# Logistic regression evaluation
+#Checks if above prediction was accurate^^^
+accuracy_lr = accuracy_score(y_test, y_pred_lr)
+precision_lr = precision_score(y_test, y_pred_lr)
+recall_lr = recall_score(y_test, y_pred_lr)
+f1_lr = f1_score(y_test, y_pred_lr)
+cm_lr = confusion_matrix(y_test, y_pred_lr)
+
+# Look at the results of our logistic regression
+# Accuracy: Correct predictions / All predictions; how many were right
+# Precision: All correct positive predictions / corect positive predictions + incorrect positive predictions; what we though we correct over what was correct
+# Recall: Correct positive / Correct positives + incorrect negatives; what we thought were correct over what we shouldve gotten
+# F1 Score: (2 x precision x recall) / (precision + recall)
+# Confusion Matrix: Top left is true negatives, top right is false positives, bottom left is false negatives, bottom right is true positives; These values are what caluculate the above measures
+print(f'Logistic Regression:\n Accuracy: {accuracy_lr}\n Precision: {precision_lr}\n Recall: {recall_lr}\n F1 Score: {f1_lr}')
+sns.heatmap(cm_lr, annot=True, fmt='d', cmap='Blues')
+plt.title('Logistic Regression Confusion Matrix')
+plt.show()
+
+# We ran this again with training data instead of testing data. Scores were a bit lower, and thus caused questions around training data, the threshold,
+# use of logistic regression, etc.
 
 # Train a Random Forest classifier with tuned parameters
 rf_model = RandomForestClassifier(
@@ -106,3 +145,45 @@ import joblib
 model_filename = 'ghost_model.pkl'
 joblib.dump(rf_model, model_filename)
 print(f"\nModel saved to '{model_filename}'")
+
+
+
+#Create model and add training data
+svm_model = SVC(random_state=42)
+svm_model.fit(x_train, y_train)
+#tell to predict comparing to testing data
+y_pred_svm = svm_model.predict(x_test)
+#Check accuracy measures
+accuracy_svm = accuracy_score(y_test, y_pred_svm)
+precision_svm = precision_score(y_test, y_pred_svm)
+recall_svm = recall_score(y_test, y_pred_svm)
+f1_svm = f1_score(y_test, y_pred_svm)
+cm_svm = confusion_matrix(y_test, y_pred_svm)
+#Show heatmap and stats
+print(f'Support Vector Machine:\n Accuracy: {accuracy_svm}\n Precision: {precision_svm}\n Recall: {recall_svm}\n F1 Score: {f1_svm}')
+sns.heatmap(cm_svm, annot=True, fmt='d', cmap='Blues')
+plt.title('Support Vector Machine Confusion Matrix')
+plt.show()
+
+
+# New DTM
+
+# Decision Tree Classifier
+dt_model = DecisionTreeClassifier(random_state=42)
+dt_model.fit(x_train, y_train)
+y_pred_dt = dt_model.predict(x_test)
+
+# Decision Tree Evaluation
+# Same code as used in lrm^^^
+accuracy_dt = accuracy_score(y_test, y_pred_dt)
+precision_dt = precision_score(y_test, y_pred_dt)
+recall_dt = recall_score(y_test, y_pred_dt)
+f1_dt = f1_score(y_test, y_pred_dt)
+cm_dt = confusion_matrix(y_test, y_pred_dt)
+
+print(f'Decision Tree Classifier:\n Accuracy: {accuracy_dt}\n Precision: {precision_dt}\n Recall: {recall_dt}\n F1 Score: {f1_dt}')
+sns.heatmap(cm_dt, annot=True, fmt='d', cmap='Blues')
+plt.title('Decision Tree Confusion Matrix')
+plt.show()
+
+# Accuracy is quite higher here than with logistic regression model
