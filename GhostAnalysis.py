@@ -86,8 +86,8 @@ cm_lr = confusion_matrix(y_test, y_pred_lr)
 
 # Look at the results of our logistic regression
 # Accuracy: Correct predictions / All predictions; how many were right
-# Precision: All correct positive predictions / corect positive predictions + incorrect positive predictions; what we though we correct over what was correct
-# Recall: Correct positive / Correct positives + incorrect negatives; what we thought were correct over what we shouldve gotten
+# Precision: All correct positive predictions / correct positive predictions + incorrect positive predictions; what we thought was correct over what was correct
+# Recall: Correct positive / Correct positives + incorrect negatives; what we thought were correct over what we should've gotten
 # F1 Score: (2 x precision x recall) / (precision + recall)
 # Confusion Matrix: Top left is true negatives, top right is false positives, bottom left is false negatives, bottom right is true positives; These values are what caluculate the above measures
 print(
@@ -98,6 +98,8 @@ plt.show()
 
 # We ran this again with training data instead of testing data. Scores were a bit lower, and thus caused questions around training data, the threshold,
 # use of logistic regression, etc.
+
+# Logistic regression model is kept in code for demonstration purposes when presenting the project to hackathon judges.
 
 # Train a Random Forest classifier with tuned parameters
 rf_model = RandomForestClassifier(

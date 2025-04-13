@@ -24,8 +24,9 @@ def predict():
 
         prediction = model.predict([features])[0]
         result = "Haunted" if prediction == 1 else "Not Haunted"  # based on parameters from user, use ml model to predict if graveyard will be haunted or not
+        bg_color = "black" if prediction == 1 else "gray"
 
-        return render_template('prediction.html', result=result)  # display prediction result
+        return render_template('prediction.html', result=result, bg_color=bg_color)  # display prediction result
 
     except Exception as e:
         return f"<h2>Error: {str(e)}</h2><a href='/'>Back</a>"
