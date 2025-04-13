@@ -10,21 +10,19 @@ warnings.filterwarnings('ignore')
 
 # Scikit-learn imports
 from sklearn.model_selection import train_test_split
-from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.utils import resample
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, f1_score
-from sklearn.tree import DecisionTreeClassifier
 
-
+import joblib
 
 # Load dataset
 file_path = 'haunting_dataset.csv'
 df = pd.read_csv(file_path)
 
-#Dropping wind since we found that it did not help much with predictions
-#df = df.drop(['wind'], axis = 1)
+# Dropping wind since we found that it did not help much with predictions
+# df = df.drop(['wind'], axis = 1)
 
 print(df.head())
 
@@ -50,7 +48,6 @@ df['day'] = df['day'].map({
     'Monday': 0, 'Tuesday': 1, 'Wednesday': 2, 'Thursday': 3,
     'Friday': 4, 'Saturday': 5, 'Sunday': 6})
 
-
 # Balance the dataset
 df_majority = df[df.haunted == 0]
 df_minority = df[df.haunted == 1]
@@ -72,15 +69,15 @@ x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 # Logistic Regression
 
-#Creates model type
+# Creates model type
 lr_model = LogisticRegression(random_state=42)
-#Puts our TRAINING DATA in the model
+# Puts our TRAINING DATA in the model
 lr_model.fit(x_train, y_train)
-#Predicts using testing data?
+# Predicts using testing data?
 y_pred_lr = lr_model.predict(x_test)
 
 # Logistic regression evaluation
-#Checks if above prediction was accurate^^^
+# Checks if above prediction was accurate^^^
 accuracy_lr = accuracy_score(y_test, y_pred_lr)
 precision_lr = precision_score(y_test, y_pred_lr)
 recall_lr = recall_score(y_test, y_pred_lr)
@@ -93,7 +90,8 @@ cm_lr = confusion_matrix(y_test, y_pred_lr)
 # Recall: Correct positive / Correct positives + incorrect negatives; what we thought were correct over what we shouldve gotten
 # F1 Score: (2 x precision x recall) / (precision + recall)
 # Confusion Matrix: Top left is true negatives, top right is false positives, bottom left is false negatives, bottom right is true positives; These values are what caluculate the above measures
-print(f'Logistic Regression:\n Accuracy: {accuracy_lr}\n Precision: {precision_lr}\n Recall: {recall_lr}\n F1 Score: {f1_lr}')
+print(
+    f'Logistic Regression:\n Accuracy: {accuracy_lr}\n Precision: {precision_lr}\n Recall: {recall_lr}\n F1 Score: {f1_lr}')
 sns.heatmap(cm_lr, annot=True, fmt='d', cmap='Blues')
 plt.title('Logistic Regression Confusion Matrix')
 plt.show()
@@ -139,11 +137,7 @@ for i in range(10):
 
     print(f"Sample {i + 1} - True: {true_str}, Predicted: {pred_str}")
 
-import joblib
-
 # Save the trained model to a file
 model_filename = 'ghost_model.pkl'
 joblib.dump(rf_model, model_filename)
 print(f"\nModel saved to '{model_filename}'")
-
-
